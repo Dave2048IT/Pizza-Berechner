@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizza-Berechner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Pizza-Berechner</h1>
+    <form id="pizzaForm">
+      <div>
+        <h3>Runde Pizzen</h3>
+        <div class="pizza-input">
+          <label for="roundSize1"><b>Pizza 1</b> in Ø:</label>
+          <input type="number" id="roundSize1" name="roundSize1" min="1" value="22"> cm
+          <label for="roundPrice1">Preis:</label>
+          <input class="price_input" type="number" id="roundPrice1" name="roundPrice1" min="0.01" step="0.01" value="1.00"> €
+        </div>
+
+        <div class="pizza-input">
+          <label for="roundSize2"><b>Pizza 2</b> in Ø:</label>
+          <input type="number" id="roundSize2" name="roundSize2" min="1" value="24"> cm
+          <label for="roundPrice2">Preis:</label>
+          <input class="price_input" type="number" id="roundPrice2" name="roundPrice2" min="0.01" step="0.01" value="7.50"> €
+        </div>
+
+        <div class="pizza-input">
+          <label for="roundSize3"><b>Pizza 3</b> in Ø:</label>
+          <input type="number" id="roundSize3" name="roundSize3" min="1" value="26"> cm
+          <label for="roundPrice3">Preis:</label>
+          <input class="price_input" type="number" id="roundPrice3" name="roundPrice3" min="0.01" step="0.01" value="8.50"> €
+        </div>
+        
+        <div class="pizza-input">
+          <label for="roundSize4"><b>Pizza 4</b> in Ø:</label>
+          <input type="number" id="roundSize4" name="roundSize4" min="1" value="30"> cm
+          <label for="roundPrice4">Preis:</label>
+          <input class="price_input" type="number" id="roundPrice4" name="roundPrice4" min="0.01" step="0.01" value="10.50"> €
+        </div>
+      </div>
+
+      <div>
+        <h3>Eckige Pizzen</h3>
+        <div class="pizza-input">
+          <b>Pizza 5</b>
+          <label for="squareWidth1">Breite →</label>
+          <input type="number" id="squareWidth1" name="squareWidth1" min="1" value="33"> cm
+          <label for="squareHeight1">Höhe ↑</label>
+          <input type="number" id="squareHeight1" name="squareHeight1" min="1" value="46"> cm
+          <label for="squarePrice1">Preis:</label>
+          <input class="price_input" type="number" id="squarePrice1" name="squarePrice1" min="0.01" step="0.01" value="15"> €
+        </div>
+
+        <div class="pizza-input">
+          <b>Pizza 6</b>
+          <label for="squareWidth2">Breite →</label>
+          <input type="number" id="squareWidth2" name="squareWidth2" min="1" value="40"> cm
+          <label for="squareHeight2">Höhe ↑</label>
+          <input type="number" id="squareHeight2" name="squareHeight2" min="1" value="60"> cm
+          <label for="squarePrice2">Preis:</label>
+          <input class="price_input" type="number" id="squarePrice2" name="squarePrice2" min="0.01" step="0.01" value="22"> €
+        </div>
+
+        <label for="portions">Wie viele essen mit?</label>
+        <input type="number" id="portions" name="portions" min="1" value="5"> Leute
+        <p></p>
+      </div>
+
+      <button type="button" onclick="calculatePrice()">Preis berechnen</button>
+    </form>
+
+    <div id="result"></div>
+    <div id="ranking">
+      <!-- Hier wird die Rangliste der effektivsten Auswahl angezeigt -->
+    </div>
+    <div id="visualization"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
