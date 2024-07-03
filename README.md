@@ -2,6 +2,8 @@
 
 Willkommen zu meinem Pizza Calculator! Diese Seite hilft dir, die effizienteste Pizza basierend auf Preis und Fläche zu finden.
 Ideal für alle Pizza-Fans, die das beste Preis-Leistungs-Verhältnis suchen.
+Hierüber kannst du sie aufrufen:
+https://dave2048it.github.io/Pizza-Berechner/
 
 ## Funktionen
 
