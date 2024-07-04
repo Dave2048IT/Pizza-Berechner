@@ -57,21 +57,15 @@
     const ranks = calculateRanks();
     let totalArea = 0;
     let totalPrice = 0;
-  
-    ranks.forEach((rank, idx) => {
-      const priceInputId = rank.type.includes('Rund') ? `roundPrice${rank.type.charAt(5)}` : `squarePrice${rank.type.charAt(5)}`;
-      const sizeInputId1 = rank.type.includes('Rund') ? `roundSize${rank.type.charAt(5)}` : `squareWidth${rank.type.charAt(6)}`;
-      const sizeInputId2 = rank.type.includes('Rund') ? null : `squareHeight${rank.type.charAt(6)}`;
-      const price = parseFloat(document.getElementsByClassName("price_input")[idx].value);
-  
-      if (!isNaN(price)) {
-        const area = rank.pricePerArea * price;
-        totalArea += area;
-        totalPrice += price;
+    
+    for (const rank of ranks) {
+      if (rank.area > 0 && rank.pricePerArea > 0) {
+        totalArea += rank.area;
+        totalPrice += rank.pricePerArea * rank.area / 10000;
       }
-    });
-  
-    const pricePerArea = totalPrice > 0 ? totalArea / totalPrice : 0;
+    }
+    
+    const pricePerArea = totalPrice && totalArea ? (totalPrice / totalArea * 10000) : 0;
     displayResult(totalPrice, pricePerArea);
     updateRanking(ranks);
     visualizePizzas();
@@ -84,36 +78,43 @@
       Gesamtpreis für die ausgewählten Pizzen: ${totalPrice.toFixed(2)} €.<br>
       Effektivität: ${(pricePerArea).toFixed(1)} ct / dm².
     `;
+
+    const portions = document.getElementById("portions").valueAsNumber;
+    const roundSize = document.getElementById("roundSizeAll").valueAsNumber;
+
+    if (isNaN(portions) || isNaN(roundSize)) {
+      alert("Bitte geben Sie gültige Werte für Portionen und Größe ein.");
+      return;
+    }
+
+    const area = Math.PI * portions * Math.pow(roundSize / 2, 2);
+    const diameter = 2 * Math.sqrt(area / Math.PI).toFixed(1);
+    const height = Math.sqrt(area * 2/3).toFixed(0);
+
+    document.getElementById("areaForAll").innerText =
+      `Fläche für alle Beteiligten: ${(area).toFixed(1)} cm²`;
+    
+    document.getElementById("recommendedPizzas").innerHTML =
+      `Empfohlene Größe für Alle: <ul>
+        <li> rund: <b>${diameter}</b> cm Ø </li>
+        <li> oder eckig: <b>${height} x ${height * 1.5}</b> cm ▭ </li>
+      </ul>`;
   }
   
   // Funktion zur Aktualisierung der Effektivitätsrangliste
   function updateRanking(ranks) {
-    const rankingElement = document.getElementById('ranking');
-    rankingElement.innerHTML = '<h3>Rangliste der Effektivität:</h3>';
-  
-    // const ranks = calculateRanks();
-  
     // Sortieren nach Effektivität
     ranks.sort((a, b) => a.pricePerArea - b.pricePerArea);
-  
-    ranks.forEach((rank, index) => {
-      const listItem = document.createElement('div');
-      listItem.textContent = `${index + 1}. Platz: ${rank.type} -> ${(rank.pricePerArea).toFixed(1)} ct / dm²`;
-      // listItem.textContent += ` ------ ${rank.area | 0} cm² ------`
-      rankingElement.appendChild(listItem);
-    });
 
-    var listItem = document.createElement('hr');
-    rankingElement.appendChild(listItem);
-    listItem = document.createElement('hr');
-    rankingElement.appendChild(listItem);
-
-    ranks.forEach((rank, index) => {
-      const listItem = document.createElement('div');
-      listItem.textContent = `--- ${index + 1}. Platz: ${rank.area.toFixed(0)} cm² ->
-        ${(rank.area / 452.38).toFixed(2)} x 24 cm Ø`;
-      rankingElement.appendChild(listItem);
-    });
+    const tbody = document.getElementById('rankedPizzas');
+    tbody.innerHTML = ranks.map((pizza, idx) => `
+      <tr>
+          <td>${idx + 1}: ${pizza.type}</td>
+          <td>${(pizza.pricePerArea * pizza.area / 10000).toFixed(2)}</td>
+          <td>${pizza.area.toFixed(1)}</td>
+          <td>${pizza.pricePerArea.toFixed(1)}</td>
+      </tr>
+    `).join('');
   }
   
   // Funktion zur Visualisierung der Pizzen mit Krusten

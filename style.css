@@ -86,3 +86,36 @@ input {
     margin: 10px;
     vertical-align: top;
 }
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+td {
+    text-align: right;
+}
+
+#rankedPizzas tr {
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#rankedPizzas tr:hover {
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#rankedPizzas tr:nth-child(1) {
+  background: linear-gradient(to bottom, gold, #fffbe6);
+}
+
+#rankedPizzas tr:nth-child(2) {
+  background: linear-gradient(to bottom, silver, #f8f8f8);
+}
+
+#rankedPizzas tr:nth-child(3) {
+  background: linear-gradient(to bottom, #cd7f32, #f1e0d1); /* Bronze */
+}

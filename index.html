@@ -14,30 +14,30 @@
         <h3>Runde Pizzen</h3>
         <div class="pizza-input">
           <label for="roundSize1"><b>Pizza 1</b> in Ø:</label>
-          <input type="number" id="roundSize1" name="roundSize1" min="1" value="22"> cm
+          <input type="number" id="roundSize1" name="roundSize1" min="1" value="0"> cm
           <label for="roundPrice1">Preis:</label>
-          <input class="price_input" type="number" id="roundPrice1" name="roundPrice1" min="0.01" step="0.01" value="1.00"> €
+          <input type="number" id="roundPrice1" name="roundPrice1" min="0.01" step="0.01" value="1.00"> €
         </div>
 
         <div class="pizza-input">
           <label for="roundSize2"><b>Pizza 2</b> in Ø:</label>
           <input type="number" id="roundSize2" name="roundSize2" min="1" value="24"> cm
           <label for="roundPrice2">Preis:</label>
-          <input class="price_input" type="number" id="roundPrice2" name="roundPrice2" min="0.01" step="0.01" value="7.50"> €
+          <input type="number" id="roundPrice2" name="roundPrice2" min="0.01" step="0.01" value="7.50"> €
         </div>
 
         <div class="pizza-input">
           <label for="roundSize3"><b>Pizza 3</b> in Ø:</label>
           <input type="number" id="roundSize3" name="roundSize3" min="1" value="26"> cm
           <label for="roundPrice3">Preis:</label>
-          <input class="price_input" type="number" id="roundPrice3" name="roundPrice3" min="0.01" step="0.01" value="8.50"> €
+          <input type="number" id="roundPrice3" name="roundPrice3" min="0.01" step="0.01" value="8.50"> €
         </div>
         
         <div class="pizza-input">
           <label for="roundSize4"><b>Pizza 4</b> in Ø:</label>
           <input type="number" id="roundSize4" name="roundSize4" min="1" value="30"> cm
           <label for="roundPrice4">Preis:</label>
-          <input class="price_input" type="number" id="roundPrice4" name="roundPrice4" min="0.01" step="0.01" value="10.50"> €
+          <input type="number" id="roundPrice4" name="roundPrice4" min="0.01" step="0.01" value="10.50"> €
         </div>
       </div>
 
@@ -50,7 +50,7 @@
           <label for="squareHeight1">Höhe ↑</label>
           <input type="number" id="squareHeight1" name="squareHeight1" min="1" value="46"> cm
           <label for="squarePrice1">Preis:</label>
-          <input class="price_input" type="number" id="squarePrice1" name="squarePrice1" min="0.01" step="0.01" value="15"> €
+          <input type="number" id="squarePrice1" name="squarePrice1" min="0.01" step="0.01" value="15"> €
         </div>
 
         <div class="pizza-input">
@@ -60,12 +60,16 @@
           <label for="squareHeight2">Höhe ↑</label>
           <input type="number" id="squareHeight2" name="squareHeight2" min="1" value="60"> cm
           <label for="squarePrice2">Preis:</label>
-          <input class="price_input" type="number" id="squarePrice2" name="squarePrice2" min="0.01" step="0.01" value="22"> €
+          <input type="number" id="squarePrice2" name="squarePrice2" min="0.01" step="0.01" value="22"> €
         </div>
 
         <label for="portions">Wie viele essen mit?</label>
         <input type="number" id="portions" name="portions" min="1" value="5"> Leute
-        <p></p>
+        <br><br>
+        <label for="roundSizeAll">Wie viel Hunger hat jeder?</label>
+        <input type="number" id="roundSizeAll" name="roundSizeAll" min="1" value="26"> cm Ø
+        <p id="areaForAll"></p>
+        <p id="recommendedPizzas"></p>
       </div>
 
       <button type="button" onclick="calculatePrice()">Preis berechnen</button>
@@ -74,6 +78,20 @@
     <div id="result"></div>
     <div id="ranking">
       <!-- Hier wird die Rangliste der effektivsten Auswahl angezeigt -->
+      <h3>Effizienz Rangliste:</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Pizza</th>
+            <th>Preis (€)</th>
+            <th>Fläche (cm²)</th>
+            <th>cent / dm²</th>
+          </tr>
+        </thead>
+        <tbody id="rankedPizzas">
+          <!-- Dynamische Inhalte -->
+        </tbody>
+      </table>
     </div>
     <div id="visualization"></div>
   </div>
